@@ -16,7 +16,7 @@ class CreateManholesTable extends Migration
     public function up()
     {
         Schema::create('manholes', function (Blueprint $table) {
-            $table->uuid('uuid')->unique();
+            $table->uuid('guid')->unique();
             $table->string('radio');
             $table->enum('material', [Material::IRON, Material::STEEL, Material::STONE]);
             $table->integer('decoration');

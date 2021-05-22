@@ -24,9 +24,9 @@ class BuildManholeCoverRequest extends FormRequest
     public function rules()
     {
         return [
-//            'radio' => 'required|numeric|between:0,99.99',
-//            'material' => 'required|string',
-//            'decoration' => 'required|boolean'
+            'radio' => 'required|numeric|between:0,99.99',
+            'material' => 'required|string',
+            'decoration' => 'required|boolean'
         ];
     }
 }

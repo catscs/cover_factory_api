@@ -13,6 +13,7 @@ use CoverFactory\Manhole\Domain\Guid;
 use CoverFactory\Manhole\Domain\Material;
 use CoverFactory\Manhole\Domain\Radio;
 use CoverFactory\Manhole\Domain\Size;
+use Ramsey\Uuid\Guid\GuidBuilder;
 
 class StoreManholeCommand
 {
@@ -41,13 +42,14 @@ class StoreManholeCommand
      * @param float $radio
      * @param string $material
      * @param int $decoration
+     * @param string|null $guid
      */
-    public function __construct(float $radio, string $material, int $decoration)
+    public function __construct(float $radio, string $material, int $decoration, ?string $guid = '')
     {
         $this->radio = $radio;
         $this->material = $material;
         $this->decoration = $decoration;
-        $this->guid = Guid::create();
+        $this->guid = empty($guid) ? Guid::create() : new Guid($guid);
     }
 
     /**
@@ -56,14 +58,6 @@ class StoreManholeCommand
     public function guid(): Guid
     {
         return $this->guid;
-    }
-
-    /**
-     * @param Guid $guid
-     */
-    public function setGuid(Guid $guid): void
-    {
-        $this->guid = $guid;
     }
 
     public function decoration(): Decoration

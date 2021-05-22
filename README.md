@@ -7,7 +7,12 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Pasos a seguir
+## Puesta en marcha
+>Run container ***make run***.
+
+>stop container ***make stop***.
+
+>Listener in http://localhost:8000
 
 
 

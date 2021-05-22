@@ -18,8 +18,12 @@ class StoreCommandHandlerTest extends TestCase
     public function it_should_create_a_manhole(): void
     {
         $manhole = StoreManholeCommandMother::create();
-        $command = new StoreManholeCommand($manhole->radio()->value(), $manhole->material()->value(), $manhole->decoration()->value());
-        $command->setGuid($manhole->guid());
+        $command = new StoreManholeCommand(
+            $manhole->radio()->value(),
+            $manhole->material()->value(),
+            $manhole->decoration()->value(),
+            $manhole->guid()->value()
+        );
 
         $repository = $this->createMock(ManholeRepository::class);
         $handler = new StoreCommandHandler($repository);
@@ -41,8 +45,13 @@ class StoreCommandHandlerTest extends TestCase
     public function it_should_throw_exception_create_a_manhole(): void
     {
         $manhole = StoreManholeCommandMother::create();
-        $command = new StoreManholeCommand($manhole->radio()->value(), $manhole->material()->value(), $manhole->decoration()->value());
-        $command->setGuid($manhole->guid());
+        $command = new StoreManholeCommand(
+            $manhole->radio()->value(),
+            $manhole->material()->value(),
+            $manhole->decoration()->value(),
+            $manhole->guid()->value()
+        );
+
 
         $repository = $this->createMock(ManholeRepository::class);
         $handler = new StoreCommandHandler($repository);
@@ -51,9 +60,9 @@ class StoreCommandHandlerTest extends TestCase
             ->expects(self::once())
             ->method('store')
             ->with($manhole)
-            ->willThrowException(new QueryException('h'));
+            ->willThrowException(new QueryException('Error save manhole'));
 
-        self::expectExceptionMessage('h');
+        self::expectExceptionMessage('Error save manhole');
 
         $handler->__invoke($command);
 

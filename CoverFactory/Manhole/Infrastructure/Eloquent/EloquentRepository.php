@@ -10,7 +10,6 @@ use CoverFactory\Manhole\Infrastructure\Exceptions\QueryException;
 
 class EloquentRepository implements ManholeRepository
 {
-
     /**
      * @param Manhole $manhole
      * @return Manhole
@@ -18,15 +17,17 @@ class EloquentRepository implements ManholeRepository
      */
     public function store(Manhole $manhole): Manhole
     {
-        $manholeEntity = new ManholeEntity();
-        $manholeEntity->uuid = $manhole->guid()->value();
-        $manholeEntity->radio = $manhole->radio()->value();
-        $manholeEntity->material = $manhole->material()->value();
-        $manholeEntity->decoration = $manhole->decoration()->value();
-        $manholeEntity->size = $manhole->size()->value();
-        $success = $manholeEntity->save();
-        if ($success) return $manhole;
-
-        throw new QueryException('Error save Manhole');
+        try {
+            $manholeEntity = new ManholeEntity();
+            $manholeEntity->guid = $manhole->guid()->value();
+            $manholeEntity->radio = $manhole->radio()->value();
+            $manholeEntity->material = $manhole->material()->value();
+            $manholeEntity->decoration = $manhole->decoration()->value();
+            $manholeEntity->size = $manhole->size()->value();
+            $manholeEntity->save();
+            return $manhole;
+        } catch (\Exception $e) {
+            throw new QueryException($e->getMessage(), $e->getCode());
+        }
     }
 }
