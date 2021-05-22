@@ -60,7 +60,7 @@ class StoreCommandHandlerTest extends TestCase
             ->expects(self::once())
             ->method('store')
             ->with($manhole)
-            ->willThrowException(new QueryException('Error save manhole'));
+            ->willThrowException(new QueryException('Error save manhole', 400));
 
         self::expectExceptionMessage('Error save manhole');
 
