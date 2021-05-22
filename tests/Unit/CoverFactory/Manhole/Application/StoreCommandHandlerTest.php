@@ -34,7 +34,7 @@ class StoreCommandHandlerTest extends TestCase
             ->with($manhole)
             ->willReturn($manhole);
 
-        $response = $handler->__invoke($command);
+        $response = $handler($command);
 
         $this->assertEquals($manhole, $response->manhole());
     }
@@ -64,7 +64,7 @@ class StoreCommandHandlerTest extends TestCase
 
         self::expectExceptionMessage('Error save manhole');
 
-        $handler->__invoke($command);
+        $handler($command);
 
     }
 }
