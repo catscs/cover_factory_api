@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use CoverFactory\Manhole\Domain\ManholeRepository;
-use CoverFactory\Manhole\Infrastructure\Eloquent\EloquentRepository;
+use CoverFactory\Manhole\Infrastructure\Eloquent\ManholeEloquentRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(ManholeRepository::class, EloquentRepository::class);
+        $this->app->bind(ManholeRepository::class, ManholeEloquentRepository::class);
     }
 
     /**

@@ -48,9 +48,8 @@ migrate: ## Install composer dependencies
 	U_ID=${UID} docker exec -it ${DOCKER_APP} php artisan migrate
 
 project-init: ## Init project First
-	U_ID=${UID} docker-compose up -d && docker exec -it ${DOCKER_APP} composer install && cp .env.example .env
+	U_ID=${UID} cp .env.example .env && docker-compose up -d && docker exec -it ${DOCKER_APP} composer install
 	U_ID=${UID} docker exec -it ${DOCKER_APP} php artisan key:generate
-	U_ID=${UID} docker exec -it ${DOCKER_APP} php vendor/bin/phpunit
 	U_ID=${UID} docker exec -it ${DOCKER_APP} php artisan migrate
 
 copy-env:

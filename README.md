@@ -7,12 +7,24 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Puesta en marcha
->Run container ***make run***.
+## Start up
 
->stop container ***make stop***.
+- After downloading the project
 
->Listener in http://localhost:8000
+> **make project-init**
+
+> **make migrate**
+
+## Commands
+- Start container
+>***make run***
+- Stop container
+>***make stop***
+- list commads
+>***make***
+
+## Base url
+>http://localhost:8000
 
 
 

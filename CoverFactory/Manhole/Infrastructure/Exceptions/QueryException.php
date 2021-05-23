@@ -8,11 +8,10 @@ class QueryException extends \Exception
 {
     /**
      * QueryException constructor.
-     * @param $message
-     * @param $code
+     * @param \Exception $e
      */
-    public function __construct($message, $code)
+    public function __construct(\Exception $e)
     {
-        parent::__construct(MessageException::message($code, $message), 400);
+        parent::__construct(MessageException::message($e->getCode()), 500);
     }
 }

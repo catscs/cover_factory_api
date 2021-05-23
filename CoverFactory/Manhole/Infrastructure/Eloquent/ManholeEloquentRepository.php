@@ -8,8 +8,10 @@ use CoverFactory\Manhole\Domain\Guid;
 use CoverFactory\Manhole\Domain\Manhole;
 use CoverFactory\Manhole\Domain\ManholeRepository;
 use CoverFactory\Manhole\Infrastructure\Exceptions\QueryException;
+use CoverFactory\Shared\Logger\LoggerManager;
 
-class EloquentRepository implements ManholeRepository
+
+class ManholeEloquentRepository implements ManholeRepository
 {
     /**
      * @param Manhole $manhole
@@ -30,7 +32,8 @@ class EloquentRepository implements ManholeRepository
             $manhole->setGuid($guid);
             return $manhole;
         } catch (\Exception $e) {
-            throw new QueryException($e->getMessage(), $e->getCode());
+            LoggerManager::create()->logError($e->getMessage());
+            throw new QueryException($e);
         }
     }
 }

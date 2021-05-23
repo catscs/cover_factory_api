@@ -59,9 +59,36 @@ class StoreCommandHandlerTest extends TestCase
             ->expects(self::once())
             ->method('store')
             ->with($manhole)
-            ->willThrowException(new QueryException('Error save manhole', 400));
+            ->willThrowException(new QueryException(new \Exception()));
 
-        self::expectExceptionMessage('Error save manhole');
+        self::expectExceptionMessage('Error in DB');
+
+        $handler($command);
+
+    }
+
+    /** @test
+     * @throws \Exception
+     */
+    public function it_should_throw_exception_duplicate_guid(): void
+    {
+        $manhole = StoreManholeCommandMother::create();
+        $command = new StoreManholeCommand(
+            $manhole->radio()->value(),
+            $manhole->material()->value(),
+            $manhole->decoration()->value(),
+        );
+
+        $repository = $this->createMock(ManholeRepository::class);
+        $handler = new StoreCommandHandler($repository);
+
+        $repository
+            ->expects(self::once())
+            ->method('store')
+            ->with($manhole)
+            ->willThrowException(new QueryException(new \Exception('', 23000)));
+
+        self::expectExceptionMessage('Duplicate Guid');
 
         $handler($command);
 
