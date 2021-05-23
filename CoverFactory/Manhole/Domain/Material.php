@@ -15,6 +15,9 @@ class Material extends StringValueObject
 
     const MATERIALS = [self::IRON, self::STEEL, self::STONE];
 
+    /**
+     * @return InvalidParamsException|void
+     */
     function validateValue()
     {
         if (!in_array($this->value, self::MATERIALS, true)) {

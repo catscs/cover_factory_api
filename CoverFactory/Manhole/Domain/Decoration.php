@@ -11,6 +11,9 @@ class Decoration extends IntValueObject
 {
     const NUMBER_VALID = [1, 2];
 
+    /**
+     * @return InvalidParamsException|void
+     */
     function validateValue()
     {
         if (!in_array($this->value, self::NUMBER_VALID, true)) {

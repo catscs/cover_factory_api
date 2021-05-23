@@ -9,18 +9,32 @@ use CoverFactory\Manhole\Domain\Size;
 
 class SizeBuilder
 {
+    /**
+     * @var Radio
+     */
     private Radio $radio;
 
+    /**
+     * SizeBuilder constructor.
+     * @param Radio $radio
+     */
     public function __construct(Radio $radio)
     {
         $this->radio = $radio;
     }
 
+    /**
+     * @param Radio $radio
+     * @return static
+     */
     public static function create(Radio $radio): self
     {
         return new self($radio);
     }
 
+    /**
+     * @return Size
+     */
     public function build(): Size
     {
         $radio = $this->radio->value();

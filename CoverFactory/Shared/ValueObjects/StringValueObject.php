@@ -5,16 +5,29 @@ namespace CoverFactory\Shared\ValueObjects;
 
 abstract class StringValueObject implements \JsonSerializable
 {
+    /**
+     * @var string
+     */
     protected string $value;
 
+    /**
+     * StringValueObject constructor.
+     * @param string $value
+     */
     public function __construct(string $value)
     {
         $this->value = $value;
         $this->validateValue();
     }
 
+    /**
+     * @return mixed
+     */
     abstract function validateValue();
 
+    /**
+     * @return string
+     */
     public function value(): string
     {
         return $this->value;

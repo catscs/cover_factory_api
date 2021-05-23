@@ -17,7 +17,6 @@ class DecorationTest extends TestCase
         } catch (\Exception $e) {
             $this->assertEquals('Invalid argument 9 in decoration', $e->getMessage());
         }
-
     }
 
 }

@@ -16,6 +16,9 @@ class Size extends StringValueObject
 
     const SIZES = [self::S, self::M, self::L, self::XL];
 
+    /**
+     * @return InvalidParamsException|void
+     */
     function validateValue()
     {
         if (!in_array($this->value, self::SIZES, true)) {

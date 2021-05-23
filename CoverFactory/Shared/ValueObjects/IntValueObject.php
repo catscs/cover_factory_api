@@ -6,16 +6,29 @@ namespace CoverFactory\Shared\ValueObjects;
 
 abstract class IntValueObject implements \JsonSerializable
 {
+    /**
+     * @var int
+     */
     protected int $value;
 
+    /**
+     * IntValueObject constructor.
+     * @param int $value
+     */
     public function __construct(int $value)
     {
         $this->value = $value;
         $this->validateValue();
     }
 
+    /**
+     * @return mixed
+     */
     abstract function validateValue();
 
+    /**
+     * @return int
+     */
     public function value(): int
     {
         return $this->value;
