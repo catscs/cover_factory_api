@@ -26,7 +26,7 @@ class StoreManholeCommand
     private string $material;
 
     /**
-     * @var int|int
+     * @var int
      */
     private int $decoration;
 

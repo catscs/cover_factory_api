@@ -14,14 +14,17 @@ class Manhole implements \JsonSerializable
      * @var Decoration
      */
     private Decoration $decoration;
+
     /**
      * @var Material
      */
     private Material $material;
+
     /**
      * @var Radio
      */
     private Radio $radio;
+
     /**
      * @var Size
      */
