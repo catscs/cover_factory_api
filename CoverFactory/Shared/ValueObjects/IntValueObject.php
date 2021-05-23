@@ -10,7 +10,7 @@ abstract class IntValueObject implements \JsonSerializable
 
     public function __construct(int $value)
     {
-        $this->value =$value;
+        $this->value = $value;
         $this->validateValue();
     }
 

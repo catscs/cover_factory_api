@@ -6,9 +6,9 @@ namespace CoverFactory\Manhole\Domain;
 class Manhole implements \JsonSerializable
 {
     /**
-     * @var Guid
+     * @var Guid|null
      */
-    private Guid $guid;
+    private ?Guid $guid;
 
     /**
      * @var Decoration
@@ -27,8 +27,15 @@ class Manhole implements \JsonSerializable
      */
     private Size $size;
 
-
-    public function __construct(Guid $guid, Decoration $decoration, Material $material, Radio $radio, Size $size)
+    /**
+     * Manhole constructor.
+     * @param Guid|null $guid
+     * @param Decoration $decoration
+     * @param Material $material
+     * @param Radio $radio
+     * @param Size $size
+     */
+    public function __construct(?Guid $guid, Decoration $decoration, Material $material, Radio $radio, Size $size)
     {
         $this->guid = $guid;
         $this->decoration = $decoration;
@@ -37,7 +44,15 @@ class Manhole implements \JsonSerializable
         $this->size = $size;
     }
 
-    public static function create(Guid $guid, Decoration $decoration, Material $material, Radio $radio, Size $size): self
+    /**
+     * @param Decoration $decoration
+     * @param Material $material
+     * @param Radio $radio
+     * @param Size $size
+     * @param Guid|null $guid
+     * @return static
+     */
+    public static function create(Decoration $decoration, Material $material, Radio $radio, Size $size, ?Guid $guid = null): self
     {
         return new self($guid, $decoration, $material, $radio, $size);
     }
@@ -48,6 +63,14 @@ class Manhole implements \JsonSerializable
     public function guid(): Guid
     {
         return $this->guid;
+    }
+
+    /**
+     * @param Guid $guid
+     */
+    public function setGuid(Guid $guid)
+    {
+        $this->guid  = $guid;
     }
 
     /**

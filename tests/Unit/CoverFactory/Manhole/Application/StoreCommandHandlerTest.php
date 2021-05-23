@@ -5,6 +5,7 @@ namespace Tests\Unit\CoverFactory\Manhole\Application;
 
 use CoverFactory\Manhole\Application\StoreManhole\StoreCommandHandler;
 use CoverFactory\Manhole\Application\StoreManhole\StoreManholeCommand;
+use CoverFactory\Manhole\Domain\Guid;
 use CoverFactory\Manhole\Domain\ManholeRepository;
 use CoverFactory\Manhole\Infrastructure\Exceptions\QueryException;
 use PHPUnit\Framework\TestCase;
@@ -18,11 +19,11 @@ class StoreCommandHandlerTest extends TestCase
     public function it_should_create_a_manhole(): void
     {
         $manhole = StoreManholeCommandMother::create();
+        $manholeResponse = StoreManholeCommandMother::create(Guid::create());
         $command = new StoreManholeCommand(
             $manhole->radio()->value(),
             $manhole->material()->value(),
             $manhole->decoration()->value(),
-            $manhole->guid()->value()
         );
 
         $repository = $this->createMock(ManholeRepository::class);
@@ -32,11 +33,11 @@ class StoreCommandHandlerTest extends TestCase
             ->expects(self::once())
             ->method('store')
             ->with($manhole)
-            ->willReturn($manhole);
+            ->willReturn($manholeResponse);
 
         $response = $handler($command);
 
-        $this->assertEquals($manhole, $response->manhole());
+        $this->assertEquals($manholeResponse, $response->manhole());
     }
 
     /** @test
@@ -49,9 +50,7 @@ class StoreCommandHandlerTest extends TestCase
             $manhole->radio()->value(),
             $manhole->material()->value(),
             $manhole->decoration()->value(),
-            $manhole->guid()->value()
         );
-
 
         $repository = $this->createMock(ManholeRepository::class);
         $handler = new StoreCommandHandler($repository);

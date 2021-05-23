@@ -14,7 +14,7 @@ class Decoration extends IntValueObject
     function validateValue()
     {
         if (!in_array($this->value, self::NUMBER_VALID, true)) {
-            throw new InvalidParamsException("Invalid argument in decoration $this->value");
+            throw new InvalidParamsException("Invalid argument $this->value in decoration");
         }
     }
 }

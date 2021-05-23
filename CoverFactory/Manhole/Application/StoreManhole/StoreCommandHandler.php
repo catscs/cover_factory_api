@@ -31,7 +31,7 @@ class StoreCommandHandler
     public function __invoke(StoreManholeCommand $command): StoreCommandResponse
     {
         try {
-            $manhole = Manhole::create($command->guid(), $command->decoration(), $command->material(), $command->radio(), $command->size());
+            $manhole = Manhole::create($command->decoration(), $command->material(), $command->radio(), $command->size());
             $manholeResponse = $this->repository->store($manhole);
             return new StoreCommandResponse($manholeResponse);
         } catch (\Exception $e) {

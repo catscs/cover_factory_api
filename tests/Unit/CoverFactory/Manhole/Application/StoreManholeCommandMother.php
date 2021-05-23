@@ -14,11 +14,11 @@ use CoverFactory\Manhole\Domain\Material;
 
 final class StoreManholeCommandMother
 {
-    public static function create()
+    public static function create(?Guid $guid = null)
     {
         $radio = RadioBuilder::create(15)->build();
         return new Manhole(
-            new Guid('1111'),
+            $guid,
            DecorationBuilder::create(1)->build(),
            MaterialBuilder::create(Material::STONE)->build(),
             $radio,
