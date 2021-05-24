@@ -11,7 +11,7 @@ class RadioBuilder
     /**
      * @var float|int
      */
-    private int $radio;
+    private float $radio;
 
     /**
      * RadioBuilder constructor.

@@ -17,6 +17,5 @@ class GuidTest extends TestCase
         } catch (\Exception $e) {
             $this->assertEquals('Invalid Guid', $e->getMessage());
         }
-
     }
 }
